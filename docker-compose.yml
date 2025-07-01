@@ -1,0 +1,9 @@
+name: self-updater
+
+services:
+  updater:
+    image: backenddevelopersltd/luxor-updater-${ENV_NAME:-prod}:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./docker-compose.yml:/app/docker-compose.yml
