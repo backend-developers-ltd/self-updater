@@ -8,7 +8,15 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./docker-compose.yml:/app/docker-compose.yml
+    networks:
+      - updater-network
   hello-world:
     image: alpine:latest
     restart: unless-stopped
     command: sh -c "while true; do echo 'hello world'; sleep 2; done"
+    networks:
+      - updater-network
+
+networks:
+  updater-network:
+    driver: bridge
